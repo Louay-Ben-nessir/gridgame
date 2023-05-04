@@ -4,10 +4,8 @@ import math
 from utils import *
 from algos import *
 from config import *
+
 make_grid(starting_state,grid_window)
-
-
-
 
 speed = speeds[speed_index]
 
@@ -93,7 +91,6 @@ while True:
     
    
     if time.perf_counter()-last_up > 1/speed and solveing: #only redraw every x seconds
-            last_up = time.perf_counter()
             algo.step() 
             diff = get_diff(grid_values, algo.display )
             grid_values = algo.display

@@ -9,7 +9,7 @@ class DFS:
         self.found = False
         
         self.display = []
-        self.gen_all = []
+        self.gen_all = [state]
         
     def step(self):
         curr = self.free.pop(0)
@@ -17,6 +17,8 @@ class DFS:
         if compare_states(curr,final_state):
             self.found = True
             self.goal  = curr
+            self.display = curr
+            return 
             
         self.closed.append(curr)
         
@@ -41,7 +43,7 @@ class DFSL:
 
 
         self.display = []
-        self.gen_all = []
+        self.gen_all = [state]
         
     def step(self):
         curr = self.free.pop(0)
@@ -49,6 +51,8 @@ class DFSL:
         if compare_states(curr.state, final_state):
             self.found = True
             self.goal = curr.state
+            self.display = curr.state
+            return 
 
         self.closed.append(curr)
 
@@ -70,7 +74,7 @@ class BFS:
         self.found = False
         
         self.display = []
-        self.gen_all = []
+        self.gen_all = [state]
         
     def step(self):
         curr = self.free.pop(0)
@@ -78,6 +82,8 @@ class BFS:
         if compare_states(curr,final_state):
             self.found = True
             self.goal  = curr
+            self.display = curr
+            return 
             
         self.closed.append(curr)
         
@@ -99,7 +105,7 @@ class AStar:
         self.found = False
 
         self.display = []
-        self.gen_all = []
+        self.gen_all = [state]
 
     def distance(self,state1,state2):
         cost = 0
@@ -110,11 +116,14 @@ class AStar:
     
     def step(self):
         curr = self.free.pop(0)
-        self.closed.append(curr)
+        
         
         if compare_states(curr.state,final_state):
             self.found = True
             self.goal  = curr
+            self.display = curr.state
+            return 
+        self.closed.append(curr)
 
        
 
